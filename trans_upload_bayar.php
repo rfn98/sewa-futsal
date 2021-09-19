@@ -70,7 +70,7 @@ if (session_status() == PHP_SESSION_NONE) {
                               <input type="text" id="first-name" name="id_book" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $kd; ?>" readonly>
                             </div>
                           </div>
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name">Rekening Pengirim <span class="required"></span>
                             </label>
                             <div class="col-md-3 col-sm-3 col-xs-12">
@@ -94,7 +94,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                   <label><input type="radio" name="rek_tuju" value="mandiri"><img src="assets/images/mandiri.png" style="width:80px; height:30px;"> xxxx-xxx-xxxx-xx (an. xxxxx)</label>
                                 </div>
                             </div>
-                          </div>
+                          </div> -->
                           <br>
                           <div class="form-group">
                         <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name">Upload Bukti<span class="required"></span>

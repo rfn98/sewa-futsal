@@ -78,7 +78,7 @@ if(isset($_SESSION['operator'])){
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left" method="post" action="../cari_filter.php">
+            <!-- <form class="navbar-form navbar-left" method="post" action="../cari_filter.php">
               <div class="form-group">
                 <input type="text" name="mencari" class="form-control" placeholder="Search">
               </div>
@@ -90,7 +90,7 @@ if(isset($_SESSION['operator'])){
   <li class="w3-hide-small"><a href="member_profil.php" class="w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a></li>
 
   
-            </ul>
+            </ul> -->
 
             <ul class="nav navbar-nav navbar-right">
               <li class="w3-hide-small w3-dropdown-hover">

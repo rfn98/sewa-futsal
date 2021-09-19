@@ -46,8 +46,8 @@
 				 echo "Telah Bermain";
 			 }elseif($sql_res['status'] == 'Dibatalkan') {
 				 echo "Dibatalkan";
-				 ?>
-             <?php } else {?>
+			 } elseif($sql_res['status'] == 'Menunggu Transfer') {
+                 echo "Menunggu Transfer";} else {?>
              
              <form method="post"><input type="hidden" value="<?php echo $sql_res['id_book']; ?>" name="id_book" /><button type="submit" name="main" class="btn btn-warning btn-xs"><i class="fa fa-play"></i> Main</button></form></td>
              <?php

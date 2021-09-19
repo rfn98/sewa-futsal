@@ -114,3 +114,64 @@
 
   </div>
 </div>
+
+<div id="myModalJadwal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>Tambah Jadwal Lapangan</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post">
+        <?php
+            $sql = "SELECT * from lapangan";
+            $hasil = mysqli_query($koneksi,$sql);
+            // $data = mysqli_fetch_array($hasil);
+            ?>
+          <input type="hidden" name="id_jadwal" v-model="jadwalObj.id_jadwal">
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="email">Kode Lapangan</label>
+            <div class="col-sm-8">
+              <select class="form-control" name="id_lap" v-model="jadwalObj.id_lap">
+                <?php while($data = mysqli_fetch_array($hasil)) { ?>
+                <option value="<?php echo $data['id_lap']?>"><?php echo $data['id_lap']?></option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="email">Jam</label>
+            <div class="col-sm-8">
+              <input class="form-control" name="jam" v-model="jadwalObj.jam">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button type="submit" class="btn btn-primary btn-block" name="simpan_jadwal">Submit</button>
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+        </form>
+    <?php
+      require ("../koneksi.php");
+      //menyimpan data ke dalam database
+      if (isset($_POST['simpan_jadwal'])) {
+        $id_lap = $_POST['id_lap'];
+        $jam = $_POST['jam'];
+        $sql= "insert into jadwal(id_lap, jam) values ('$id_lap','$jam')";
+        $query = mysqli_query($koneksi,$sql);
+        echo "<script language='javascript'>window.location='opt_profil.php?url=jadwal';</script>";
+      }
+      ?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,7 +60,7 @@ if($_GET['lap']=="delete"){
                     </script>";
 }}?>
 <!-- Page Container -->
-<div class="container-fluid w3-content" style="max-width:1400px;margin-top:60px">
+<div class="container-fluid w3-content" id="app" style="max-width:1400px;margin-top:60px">
 
 <!-- Modal Popup untuk Harga--> 
 <div id="Modalharga" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -115,6 +115,7 @@ if($_GET['lap']=="delete"){
           <button onclick="myFunction('Demo1')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Data </button>
           <div id="Demo1" class="w3-accordion-content w3-container">
             <a href="opt_profil.php">Lapangan</a>
+            <a href="opt_profil.php?url=jadwal">Jadwal Lapangan</a>
             <a href="opt_profil.php?url=konfirmasi"> Konfirmasi Pesan Online</a>
             <a href="opt_profil.php?url=mPesanOff"> Konfirmasi Pesan Offline</a>
           </div>
@@ -128,6 +129,16 @@ if($_GET['lap']=="delete"){
             <a href="opt_profil.php?url=pesanbayaroff"> Bayar Pesan Offline</a>
 			
           </div> -->
+        <button onclick="myFunction('Demo3')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-tags fa-fw w3-margin-right"></i> Pembayaran</button>
+          <div id="Demo3" class="w3-accordion-content w3-container">
+      <a href="http://localhost/futsal-inven/member/member_profil.php?url=konfirmasi"> Konfirmasi Pesan Online (Transfer)</a>
+            <a href="http://localhost/futsal-inven/member/member_profil.php?url=bay_offline"> Bayar Offline (COD)</a>
+          </div>
+        
+          <button onclick="myFunction('Demo2')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Pemesanan</button>
+          <div id="Demo2" class="w3-accordion-content w3-container">
+      <a href="http://localhost/futsal-inven/member/member_profil.php?url=history"> Riwayat Pemesanan</a>
+          </div>
           <button onclick="myFunction('Demo4')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Foto</button>
           <div id="Demo4" class="w3-accordion-content w3-container">
          <div class="w3-row-padding">
@@ -407,6 +418,10 @@ if($_GET['lap']=="delete"){
       		}elseif($_GET['url']=="konfirmasi"){
       		include "opt_online_konfirmasi.php";
 	  ?>
+    <?php
+          }elseif($_GET['url']=="jadwal"){
+          include "jadwal_lapangan.php";
+    ?>
       
       
       <?php
@@ -542,9 +557,17 @@ function openNav() {
     <script src="../admin/assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="../admin/assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="../admin/assets/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="assets/build/js/custom.min.js"></script>
+    <script type="text/javascript">
+      const vue = new Vue({
+        el: '#app',
+        data: {
+          jadwalObj: {}
+        }
+      })
+    </script>
     <!-- Datatables -->
     <script>
       $(document).ready(function() {

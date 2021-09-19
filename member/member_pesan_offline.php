@@ -44,12 +44,13 @@
                                                  
                                                   <td>
                                                   <?php
-												  $t = mysqli_fetch_array(mysqli_query($koneksi,"select * from bayar_cod where id_book='$sql_res[id_book]'"));
+												  /*$t = mysqli_fetch_array(mysqli_query($koneksi,"select * from bayar_cod where id_book='$sql_res[id_book]'"));
                                                     if( $t > 0){
                                                         echo "$t[bayar]";
                                                         } else {
                                                         echo "0";
-															}
+															}*/
+                              echo $sql_res['total_harga'];
                                                    ?>
                                                   </td>
                                                   <td><?php echo $sql_res['status']; ?></td>

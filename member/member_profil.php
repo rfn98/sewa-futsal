@@ -66,11 +66,11 @@ if($_GET['lap']=="delete"){
         <div class="w3-container">
          <br>
          <p class="w3-center"><img src="assets/foto_member/<?php echo $sql_sel['foto']; ?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p> <br>
-         <h4 class="w3-center"><?php echo $sql_sel['nama']; ?></h4>
+         <h4 class="w3-center"><?php echo isset($sql_sel['nama']) ? $sql_sel['nama'] : $sql_sel['nama_opt']; ?></h4>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Status (Member)</p>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><?php echo $sql_sel['email']; ?></p>
-         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i><?php echo $sql_sel['username_member']; ?></p>
+         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i><?php echo isset($sql_sel['username_member']) ? $sql_sel['username_member'] : $sql_sel['username'] ?></p>
         </div>
       </div>
       <br>
@@ -78,6 +78,14 @@ if($_GET['lap']=="delete"){
       <!-- Accordion -->
       <div class="w3-card-2 w3-round">
         <div class="w3-accordion w3-white">
+          <?php if (isset($_SESSION['operator'])): ?>
+          <button onclick="myFunction('Demo1')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Data </button>
+          <div id="Demo1" class="w3-accordion-content w3-container">
+            <a href="http://localhost/futsal-inven/operator/opt_profil.php">Lapangan</a>
+            <a href="http://localhost/futsal-inven/operator/opt_profil.php?url=konfirmasi"> Konfirmasi Pesan Online</a>
+            <a href="http://localhost/futsal-inven/operator/opt_profil.php?url=mPesanOff"> Konfirmasi Pesan Offline</a>
+          </div>
+          <?php endif;?>
         <button onclick="myFunction('Demo3')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-tags fa-fw w3-margin-right"></i> Pembayaran</button>
           <div id="Demo3" class="w3-accordion-content w3-container">
 			<a href="member_profil.php?url=konfirmasi"> Konfirmasi Pesan Online (Transfer)</a>
@@ -88,6 +96,23 @@ if($_GET['lap']=="delete"){
           <div id="Demo2" class="w3-accordion-content w3-container">
 			<a href="member_profil.php?url=history"> Riwayat Pemesanan</a>
           </div>
+          <?php if (isset($_SESSION['operator'])): ?>
+          <button onclick="myFunction('Demo4')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Foto</button>
+          <div id="Demo4" class="w3-accordion-content w3-container">
+         <div class="w3-row-padding">
+         <br>
+          <?php 
+      $z = mysqli_query($koneksi, "select * from lapangan where username='$username'");
+      while($c = mysqli_fetch_array($z)){
+      ?>
+            <div class="w3-half">
+             <img src="assets/foto_lap/<?php echo $c['foto']; ?>" style="width:100%" class="w3-margin-bottom">
+             </div>
+            <?php } ?>
+           
+         </div>
+          </div>
+          <?php endif;?>
           
         </div>
       </div>

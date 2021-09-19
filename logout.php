@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['operator'])){
 	unset($_SESSION['operator']);
 	}
-elseif(isset($_SESSION['member'])){
+if(isset($_SESSION['member'])){
 	unset($_SESSION['member']);
 	}
 

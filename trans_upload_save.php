@@ -17,7 +17,7 @@ $pro = mysqli_query($koneksi, $simpan);
     
 	
 	if($pro && $s){ //jika berhasil menyimpan dan update
-		echo "<script> alert(\"Silahkan tunggu email konfirmasi\"); window.location = \"index.php\"; </script>";	
+		echo "<script> alert(\"Silahkan tunggu konfirmasi admin\"); window.location = \"index.php\"; </script>";	
 		} else { //jika tidak
 		echo "<script> alert(\"Maaf, Terjadi Kesalahan...\"); window.location = \"index.php\"; </script>";		
 			}
