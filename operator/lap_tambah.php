@@ -122,7 +122,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4>Tambah Jadwal Lapangan</h4>
+        <h4>Jadwal Lapangan</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" method="post">
@@ -160,9 +160,12 @@
       require ("../koneksi.php");
       //menyimpan data ke dalam database
       if (isset($_POST['simpan_jadwal'])) {
+        $id_jadwal = null;
+        if (isset($_POST['id_jadwal'])) $id_jadwal = $_POST['id_jadwal'];
         $id_lap = $_POST['id_lap'];
         $jam = $_POST['jam'];
-        $sql= "insert into jadwal(id_lap, jam) values ('$id_lap','$jam')";
+        $sql = "INSERT INTO jadwal(id_lap, jam) VALUES ('$id_lap','$jam')";
+        if ($id_jadwal) $sql = "UPDATE jadwal SET id_lap = '$id_lap', jam = '$jam' WHERE id_jadwal = '$id_jadwal'";
         $query = mysqli_query($koneksi,$sql);
         echo "<script language='javascript'>window.location='opt_profil.php?url=jadwal';</script>";
       }

@@ -42,6 +42,7 @@ if(isset($_SESSION['operator'])){
 </head>
 <body>
  <!-- edit atau delete lapangan maupun tambah -->
+ <div id="app">
   <?php 
 	include ("lap_tambah.php");
 	include ("navbar.php");
@@ -60,7 +61,7 @@ if($_GET['lap']=="delete"){
                     </script>";
 }}?>
 <!-- Page Container -->
-<div class="container-fluid w3-content" id="app" style="max-width:1400px;margin-top:60px">
+<div class="container-fluid w3-content" style="max-width:1400px;margin-top:60px">
 
 <!-- Modal Popup untuk Harga--> 
 <div id="Modalharga" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -507,6 +508,7 @@ if($_GET['lap']=="delete"){
 <!-- End Page Container -->
 </div></div>
 </div>
+</div>
 <br>
 
 <!-- Footer -->
@@ -896,6 +898,8 @@ function openNav() {
 	function hapusElemen(idf) {
     		$(idf).remove();
 		}
+
+    const setIdJadwal = id_jadwal => $('[name="id_jadwal_delete"]').val(id_jadwal)
 </script>
 </body>
 </html>

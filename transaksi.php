@@ -151,7 +151,13 @@ if (session_status() == PHP_SESSION_NONE) {
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-4">
                               <select class="form-control form-control col-md-4 col-xs-6" name="jam_mulai" id="sel1">
-                                <option>00:00</option>
+                                <?php 
+                                  $sql_jadwal = mysqli_query($koneksi, "SELECT * FROM jadwal WHERE id_lap = '$id_lap'")
+                                ?>
+                                <?php while($list_jadwal = mysqli_fetch_array($sql_jadwal)) { ?>
+                                <option value="<?php echo $list_jadwal['jam']?>"><?php echo $list_jadwal['jam'] ?></option>
+                                <?php } ?>
+                                <!-- <option>00:00</option>
                                 <option>01:00</option>
                                 <option>02:00</option>
                                 <option>03:00</option>
@@ -174,7 +180,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <option>20:00</option>
                                 <option>21:00</option>
                                 <option>22:00</option>
-                                <option>23:00</option>
+                                <option>23:00</option> -->
                               </select>
                                     </div>
                                   </div>
@@ -220,8 +226,10 @@ if (session_status() == PHP_SESSION_NONE) {
 						$jam_mulai = $_POST['jam_mulai'];
 						$durasi = $_POST['durasi'];
 						//penambahan pada jam mulai dan durasi
-						$jamdur = $durasi + $jam_mulai;
-						$jam_berakhir = $jamdur.":00:00";
+						$jamdur = $durasi + explode(':', $jam_mulai)[0];
+            $minute = explode(':', $jam_mulai)[1];
+						$jam_berakhir = $jamdur.($minute == '00' ? ':00' : ":$minute").':00';
+            // $jam_berakhir = $jamdur.":00:00";
 						//echo $jam_berakhir;
 						//$now=date('Y-m-d h:i:s', strtotime('4 hours', strtotime($tgl)));
 						$tanggal = date('Y-m-d', time()+60*60*6); //variabel dengan nilai date/tanggal sekarang
@@ -258,8 +266,8 @@ if (session_status() == PHP_SESSION_NONE) {
 						}elseif(strtotime($tgljam) - strtotime($tanggaljam) <= 10800){ // cek apakah waktu pesan kurang dari 3 jam dari waktu bermain
 							echo "<script> alert(\"Waktu minimal pemesanan adalah 3 jam\");</script>";
 						}else{ //jika tidak maka transaksi dapat dilanjutkan
-              
-							$simpan = mysqli_query($koneksi, "insert into transaksi values ('$id_book','$username','$id_lap',NOW(),'$bayarakhir','$tanggal_main','$jam_mulai','$jamdur:00:00','$jenis_bayar','$total','$status')");
+
+							$simpan = mysqli_query($koneksi, "insert into transaksi values ('$id_book','$username','$id_lap',NOW(),'$bayarakhir','$tanggal_main','$jam_mulai','$jam_berakhir','$jenis_bayar','$total','$status')");
 
 if($simpan & $jenis_bayar=='transfer'){ //jika simpan data berhasil dan jenis bayar = transfer 
 	echo "<script> alert(\"Silakan Lakukan Pembayaran\"); window.location = \"trans_upload_bayar.php?kd=$id_book\"; </script>";

@@ -58,6 +58,7 @@ $tanggal1 = '2017-01-01';
 $cektr = mysqli_query($koneksi,"select * from transaksi");
 $cek = mysqli_num_rows($cektr);
 $les = mysqli_fetch_array($cektr);
+$id_lap = null;
 
 if($cek > 0){
 //Dibatalkan jika bayar transfer dan telah melewati batas bayar
@@ -212,8 +213,31 @@ mysqli_query($koneksi, "update transaksi set status='Selesai' where ((tgl_main <
                   <i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;<?php echo $r['alamat_futsal']; ?><br><br>
                   <i class="fa fa-list-alt" aria-hidden="true"></i> Lapangan Nomor&nbsp;<?php echo $r['no_lap']; ?><br><br>
                   <i class="fa fa-life-ring" aria-hidden="true"></i> Lapangan <?php echo $r['jenis_rumput']; ?><br><br>
-                  <i class="fa fa-tags" aria-hidden="true"></i> Rp. <?php echo $r['harga']; ?> per jam<br><br><br><br>
-                  
+                  <i class="fa fa-tags" aria-hidden="true"></i> Rp. <?php echo $r['harga']; ?> per jam<br><br>
+                  <!-- <a class="btn btn-sm btn-success" data-target="#myModalViewJadwal" data-toggle="modal" onclick="<?php $id_lap = $r['id_lap']?>">Lihat Jadwal</a> -->
+                  <div style="max-height: 13em; overflow-y: auto; margin-bottom: 3em;">
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Jam</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                          $id_lap = $r['id_lap'];
+                          $query_jadwal = mysqli_query($koneksi, "SELECT * FROM jadwal WHERE id_lap = '$id_lap'");
+                          $no = 1;
+                          while ($list_jadwal = mysqli_fetch_array($query_jadwal)) {
+                        ?>
+                        <tr>
+                          <td><?php echo $no++?></td>
+                          <td><?php echo $list_jadwal['jam'] ?></td>
+                        </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
               </div>
               <div class="w3-right">
 
@@ -305,6 +329,40 @@ mysqli_query($koneksi, "update transaksi set status='Selesai' where ((tgl_main <
         
            </div>
          </div>
+    <div class="modal fade" id="myModalViewJadwal">
+      <div class="modal-dialog">
+        <div class="modal-content" style="margin-top:100px;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" style="text-align:center;">Jadwal Lapangan</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Jam</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  // $id_lap = $r['id_lap'];
+                  $query_jadwal = mysqli_query($koneksi, "SELECT * FROM jadwal WHERE id_lap = '$id_lap'");
+                  while ($list_jadwal = mysqli_fetch_array($query_jadwal)) {
+                ?>
+                <tr>
+                  <td><?php echo $list_jadwal['jam'] ?></td>
+                </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer" style="margin:0px; border-top:0px; text-align:center;">
+              <button type="submit" name="delete_jadwal" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 <!-- php include ("footer.php"); -->
 </body>
 </html>
