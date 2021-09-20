@@ -20,7 +20,7 @@ if(isset($_SESSION['operator'])){
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.php">GO-Futsal</a>
+            <a class="navbar-brand" href="../index.php">AWK Futsal</a>
           </div>
 
 
@@ -68,7 +68,7 @@ if(isset($_SESSION['operator'])){
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.php">GO-Futsal</a>
+            <a class="navbar-brand" href="../index.php">AWK Futsal</a>
           </div>
 
 

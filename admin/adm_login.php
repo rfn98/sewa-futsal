@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Login Administration | GO-Futsal</title>
+  <title>Login Administration | AWK Futsal</title>
   <link rel="shortcut icon" href="../assets/images/Goputsalgaji.png">
   <!-- Bootstrap -->
   <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
               <div>
                 <h1><img src="../assets/images/Goputsalgaji.png" style="width:25px; height:25px;"> GO-<font color="#6fcb44">Futsal</font>
                 </h1>
-                <p>GO Futsal By GO-Team</p>
+                <p>AWK Futsal By GO-Team</p>
                 <p>©2016 All Rights Reserved</p>
                 <p>Repost by <a href="https://stokcoding.com/" title="StokCoding.com" target="_blank">StokCoding.com</a></p>
               </div>

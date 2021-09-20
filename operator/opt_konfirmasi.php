@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>GO Futsal || Reset Password</title>
+  <title>AWK Futsal || Reset Password</title>
   <meta charset="utf-8">
    <link rel="shortcut icon" href="../assets/images/Goputsalgaji.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">

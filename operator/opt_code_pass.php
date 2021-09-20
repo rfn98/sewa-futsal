@@ -5,7 +5,7 @@ include ("sendEmail-v156.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>GO Futsal || Code Pass</title>
+  <title>AWK Futsal || Code Pass</title>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../assets/images/Goputsalgaji.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">

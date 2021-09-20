@@ -21,7 +21,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GO Futsal || Pemesanan</title>
+    <title>AWK Futsal || Pemesanan</title>
     <!-- Custom Theme Style -->
     
     <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -352,7 +352,7 @@ if($simpan & $jenis_bayar=='transfer'){ //jika simpan data berhasil dan jenis ba
 						'id_lap': id_lap
 					},
 					success: function (siswa) {
-						$("#total").val(siswa['harga']*durasi);
+						$("#total").val('<?php echo $username?>'.length ? ((siswa['harga']*durasi) - 10000) : siswa['harga']*durasi);
 					}
 				});
 			});

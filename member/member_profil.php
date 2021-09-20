@@ -12,7 +12,7 @@ if(isset($_SESSION['member'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>GO Futsal || Halaman Member</title>
+  <title>AWK Futsal || Halaman Member</title>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../assets/images/Goputsalgaji.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">

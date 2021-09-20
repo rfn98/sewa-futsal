@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Masuk GO-Futsal</h4>
+        <h4 class="modal-title">Masuk AWK Futsal</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -22,7 +22,7 @@
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-9">
               <p>
-                Atau masuk dengan akun GO-Futsal Anda
+                Atau masuk dengan akun AWK Futsal Anda
               </p>
           </div>
         </div>

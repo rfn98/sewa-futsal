@@ -31,8 +31,8 @@
             <div class="col-sm-8">
               <select class="form-control" name="jenis_rumput"  required>
                 <option disabled="disabled">--- Pilih Jenis Lapangan ---</option>
-            	 <option value="sintetis">Rumput Sintetis</option>
-				    <option value="beton/semen">Beton/Semen</option>
+            	 <option value="Vynil">Vynil</option>
+				    <!-- <option value="beton/semen">Beton/Semen</option> -->
                         </select>
             </div>
           </div>

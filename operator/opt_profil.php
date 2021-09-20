@@ -12,7 +12,7 @@ if(isset($_SESSION['operator'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>GO Futsal || Halaman Operator</title>
+  <title>AWK Futsal || Halaman Operator</title>
   <link rel="shortcut icon" href="../assets/images/Goputsalgaji.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -154,6 +154,10 @@ if($_GET['lap']=="delete"){
             <?php } ?>
            
          </div>
+          </div>
+          <button onclick="myFunction('Demo5')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Laporan </button>
+          <div id="Demo5" class="w3-accordion-content w3-container">
+            <a href="http://localhost/futsal-inven/operator/opt_profil.php?url=report"> Laporan Pemesanan</a>
           </div>
         </div>
       </div>
@@ -423,6 +427,10 @@ if($_GET['lap']=="delete"){
           }elseif($_GET['url']=="jadwal"){
           include "jadwal_lapangan.php";
     ?>
+    <?php
+          }elseif($_GET['url']=="report"){
+          include "report.php";
+    ?>
       
       
       <?php
@@ -566,7 +574,8 @@ function openNav() {
       const vue = new Vue({
         el: '#app',
         data: {
-          jadwalObj: {}
+          jadwalObj: {},
+          listReport: []
         }
       })
     </script>
@@ -773,6 +782,10 @@ function openNav() {
 
 		<script src="../assets/js/moment.js"></script>
 		<script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/pdfmake.min.js" integrity="sha512-Yf733gmgLgGUo+VfWq4r5HAEaxftvuTes86bKvwTpqOY3oH0hHKtX/9FfKYUcpaxeBJxeXvcN4EY3J6fnmc9cA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/vfs_fonts.js" integrity="sha512-cktKDgjEiIkPVHYbn8bh/FEyYxmt4JDJJjOCu5/FQAkW4bc911XtKYValiyzBiJigjVEvrIAyQFEbRJZyDA1wQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
        
 		<script type="text/javascript">
 			$(function () {
@@ -900,6 +913,68 @@ function openNav() {
 		}
 
     const setIdJadwal = id_jadwal => $('[name="id_jadwal_delete"]').val(id_jadwal)
+
+    const getListReport = async () => {
+      const date_start = moment($('#date_start').val()).format('YYYY-MM-DD')
+      const date_end = moment($('#date_end').val()).format('YYYY-MM-DD')
+      const data = await $.ajax({
+        url: `http://localhost/futsal-inven/operator/report_data.php?date_start=${date_start}&&date_end=${date_end}`,
+        dataType: 'JSON'
+      })
+      vue.listReport = data
+    }
+
+    const printPdf = () => {
+      const borderLess = [false, false, false, false]
+      const content = [
+        {text: 'LAPORAN PEMESANAN PENYEWAAN LAPANGAN FUTSAL', style: {alignment: 'center', bold: true, fontSize: 20}, margin: [0,0,0,8]},
+        {text: moment($('#date_start').val()).format('DD MMMM YYYY') + ' S/D ' + moment($('#date_end').val()).format('DD MMMM YYYY'), style: {alignment: 'center', bold: true, fontSize: 20}, margin: [0,0,0,15]},
+      ]
+      const body = [
+      [/*{text: 'No', style: {bold:true} },*/
+        {text: 'Tanggal Transaksi', style: {bold:true} },
+        {text: 'Tanggal Main', style: {bold:true} },
+        {text: 'Mulai', style: {bold:true} },
+        // {text: 'No Agenda', style: {bold:true} },
+        {text: 'Selesai', style: {bold:true} },
+        {text: 'Total Bayar', style: {bold:true} },
+        {text: 'Jenis Bayar', style: {bold:true} }]
+      ]
+      for (const idx in vue.listReport) body.push([ 
+        /*{text:eval(idx) + 1},*/
+        /*{text:vue.listDisposisi[idx].asal_surat},
+        {text:vue.listDisposisi[idx].no_surat},
+        {text:vue.listDisposisi[idx].tgl_surat},
+        // {text:moment(vue.listDisposisi[idx].tgl_surat).format('DD MMMM YYYY')},
+        // {text:vue.listDisposisi[idx].id_disposisi},
+        {text:vue.listDisposisi[idx].sifat_surat},
+        {text:vue.listDisposisi[idx].ur_bagian},
+        {text:vue.listDisposisi[idx].catatan},
+        {text:vue.listDisposisi[idx].ur_status},
+        {text:vue.listDisposisi[idx].diterima_tgl}*/
+        {text:vue.listReport[idx].tgl_transaksi},
+        {text:vue.listReport[idx].tgl_main},
+        {text:vue.listReport[idx].jam_mulai},
+        {text:vue.listReport[idx].jam_berakhir},
+        {text:vue.listReport[idx].total_harga},
+        {text:vue.listReport[idx].jenis_bayar}
+      ])
+      content.push({
+        table: {
+          widths: ['*', '*', '*', '*', '*', '*'],
+          body: body
+        },
+        margin: [50,0,0,8]
+        // style: {alignment: 'center'}
+      })
+      const docDefinition = {
+        pageSize: 'A4',
+        pageOrientation: 'landscape',
+        content: content
+      };
+      pdfMake.createPdf(docDefinition).download('laporan-pemesanan' + '.pdf');
+      // pdfMake.createPdf(docDefinition).download(nm_jenis_surat.toUpperCase() + '.pdf');
+    }
 </script>
 </body>
 </html>

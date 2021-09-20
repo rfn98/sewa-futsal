@@ -20,7 +20,7 @@ if(isset($_SESSION['admin'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GO Futsal || Administration </title>
+    <title>AWK Futsal || Administration </title>
 
     <!-- Bootstrap -->
     <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +52,7 @@ if(isset($_SESSION['admin'])){
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><img src="../assets/images/Goputsalgaji.png" style="width:30px; height:30px;"> <span>GO Futsal</span></a>
+              <a href="index.php" class="site_title"><img src="../assets/images/Goputsalgaji.png" style="width:30px; height:30px;"> <span>AWK Futsal</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -205,7 +205,7 @@ if(isset($_SESSION['admin'])){
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            GO Futsal - GO Team
+            AWK Futsal - GO Team
           </div>
           <div class="clearfix"></div>
         </footer>
